@@ -1,0 +1,107 @@
+/* Travel atlas */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+.page:has(.atlas-mast){padding-top:clamp(16px,2vw,37px)}
+.atlas-mast .page-title{font-size:clamp(48px,5.3vw,87px)}
+.travel-nav{margin:16px 0 18px;gap:22px}
+.reference-atlas .yu-atlas .am-tabs{display:none}
+#viewer.photo-viewer{width:fit-content;min-width:min(295px,96vw);max-width:98vw}
+#viewer.photo-viewer #viewer-img{width:auto;height:auto;max-width:min(calc(96vw - 42px),var(--photo-width,100vw));max-height:72dvh;object-fit:contain;margin:auto;background:transparent}
+#viewer.photo-viewer .viewer-foot{max-width:min(82vw,850px)}
+
+.land-index,.land-country,.land-countries,.land-map,.land-album-tools{color:#332f28}
+.land-index-head,.land-album-tools{display:flex;align-items:baseline;justify-content:space-between;gap:15px;border-top:1px solid var(--line);padding:13px 0 18px}
+.land-index-head p,.land-crumbs,.atlas-country-control select,.land-region-nav{font-size:13px;line-height:1.45}
+.land-index-head p,.land-crumbs,.land-credits{color:#655e52}
+.atlas-country-control select{border:0;border-radius:0;border-bottom:1px solid #a79f90;background:transparent;color:#4a443a;padding:3px 1px;font-family:inherit;cursor:pointer;max-width:100%}
+.land-regions{display:grid;grid-template-columns:2.05fr 1fr 1fr;gap:clamp(14px,1.65vw,32px);align-items:stretch}
+.land-cover{display:flex;flex-direction:column;min-width:0;color:inherit}
+.land-cover-image{display:block;position:relative;flex:1;overflow:hidden;background:#f3f0e8;aspect-ratio:1.66}
+.land-cover-image img{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.land-cover:is(:hover,:focus-visible) .land-cover-label{text-decoration:underline;text-underline-offset:3px}
+.land-cover-label{display:flex;justify-content:space-between;align-items:baseline;gap:3px;margin-top:7px;font-size:clamp(16px,1.48vw,25px);line-height:1.2;letter-spacing:-.035em}
+.land-cover-label span{font-size:14px;color:#8b8172}
+.land-regions .land-cover:first-child{grid-row:span 2}
+.land-regions .land-cover:first-child .land-cover-image{aspect-ratio:auto;min-height:150px}
+.land-map{margin:0 0 clamp(25px,3vw,52px);border-block:1px solid var(--line)}
+.land-index-head h2{font-size:clamp(24px,2.4vw,41px);font-weight:450;letter-spacing:-.045em}
+.tour-country{display:flex;justify-content:space-between;align-items:center;width:100%;max-width:390px;gap:10px}
+.tour-country .atlas-country-control{min-width:0}
+.tour-country select{font-size:clamp(22px,2.2vw,36px);font-weight:450;letter-spacing:-.04em;border:0;line-height:1.2;padding:0;max-width:100%}
+.tour-country .leg-controls{margin:0}
+.map-album{width:min(100%,390px);display:block}
+.map-photo{display:block;aspect-ratio:1.65;background:transparent;overflow:hidden}
+.map-photo img{display:block;width:100%;height:100%;object-fit:contain}
+.map-photo-link{display:inline-block;margin-top:6px;font-size:12px;text-decoration:underline;text-underline-offset:3px}
+.land-map-panel{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:5%;align-items:center;background:#f7f3eb;padding:clamp(15px,2vw,34px)}
+.globe-panel{min-width:0}
+.atlas-globe{width:100%;height:clamp(236px,26vw,405px)}
+.globe-base,.earth-controls,.leg-controls,.mode-switch{display:flex;align-items:center;gap:8px}.globe-base{justify-content:space-between;font-size:12px;color:#665f53}
+.earth-controls button,.leg-controls button{width:32px;height:32px;display:grid;place-items:center;border:1px solid #c9c1b4;border-radius:50%}.leg-controls button:disabled{opacity:.36}
+.map-controls{display:grid;gap:13px;justify-items:start;min-width:0}
+.mode-switch{gap:20px;font-size:13px}.mode-switch [aria-pressed="true"],.land-map-link{border-bottom:1px solid #756952}.land-map-link{font-size:15px}.leg-controls{margin-top:14px}
+.land-credits{margin-top:18px;font-size:11px}.land-credits a,.land-crumbs a{text-decoration:underline;text-underline-offset:3px}
+.land-crumbs,.land-region-nav{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.land-countries{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(24px,3vw,44px) clamp(12px,1.6vw,28px)}
+.land-countries .land-cover-image{flex:none}
+.land-region-nav{gap:10px 20px;margin-top:35px;padding-top:14px;border-top:1px solid var(--line)}.land-region-nav [aria-current]{text-decoration:underline;text-underline-offset:4px}
+.land-country h2{font-size:24px;font-weight:450;letter-spacing:-.03em;margin:2px 0 14px}
+.land-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:center;gap:clamp(16px,2.5vw,37px)}
+.land-print{display:block;cursor:zoom-in;width:100%;min-width:0}.land-print img{display:block;margin:0 auto;width:auto;height:auto;max-width:100%;max-height:min(65vh,600px);object-fit:contain}
+.land-single{display:block}.land-single img{max-height:75vh}
+@media(max-width:850px){.land-countries{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:650px){.land-regions{grid-template-columns:repeat(2,minmax(0,1fr));gap:17px 12px}.land-regions .land-cover:first-child{grid-column:1 / -1;grid-row:auto}.land-regions .land-cover:first-child .land-cover-image{aspect-ratio:2.05;min-height:0}.land-regions .land-cover-image{flex:none}.land-countries{grid-template-columns:repeat(2,minmax(0,1fr))}.land-gallery{grid-template-columns:1fr}.land-map-panel{grid-template-columns:1fr}.land-index-head p,.atlas-country-control select,.land-crumbs{font-size:12px}.land-region-nav{font-size:12px}.land-credits{margin-top:12px}.land-album-tools{align-items:center}}
+@media(prefers-reduced-motion:reduce){.land-cover-image img{transition:none}}
+.about figure img.about-portrait{width:100%;height:auto;aspect-ratio:auto;object-fit:contain}
+
+/* The work titles form the outer scale of the wooden globe. */
+body:has(.home-earth){--paper:#fbfaf6;--black:#282720;--muted:#6f6b61;--blue:#795337;--line:#dedad0;color:var(--black);background:var(--paper)}
+body:has(.home-earth) .site-header{background:var(--paper)}
+body:has(.home-earth) .intro{grid-template-columns:minmax(0,1fr) minmax(0,1.12fr);padding:clamp(12px,1.8vw,30px) 0 clamp(28px,3vw,48px);column-gap:4%}
+body:has(.home-earth) .tile-title,.studio-grid .tile-title{font-size:clamp(18px,1.55vw,26px);line-height:1.2}
+body:has(.home-earth) .intro-copy>p{color:#58574f;max-width:395px}
+.home-earth{width:min(100%,535px);min-width:0;justify-self:center}
+.home-earth-stage{position:relative;isolation:isolate;width:min(100%,473px);margin:0 auto;aspect-ratio:1}
+.orbit-surface{position:absolute;inset:0;width:100%;height:100%;cursor:grab;touch-action:none}
+.orbit-surface:focus-visible{outline:1px dashed #795337;outline-offset:-2px;border-radius:50%}
+.home-earth-stage.turning,.home-earth-stage.turning button{cursor:grabbing}
+.home-earth .globe-host{position:absolute;inset:50% auto auto 50%;width:81%;aspect-ratio:1;transform:translate(-50%,-50%);clip-path:circle(47%);z-index:1}
+.engraved-track{position:absolute;inset:9.6%;border:1px solid #c7bda9;border-radius:50%;pointer-events:none}
+.engraved-track:before{content:"";position:absolute;left:50%;top:-3px;width:1px;height:6px;background:#77573d}
+.work-inscription{position:absolute;z-index:2;left:50%;top:50%;width:28%;height:10%;min-height:31px;display:grid;place-items:center;touch-action:none;user-select:none;color:#6b6255}
+.work-inscription svg{display:block;width:100%;height:auto;overflow:visible;pointer-events:none}
+.work-inscription text{fill:currentColor;font:500 15.3px/1 var(--sans);letter-spacing:.012em}
+.work-inscription .arc-down,.work-inscription.lower-arc .arc-up{display:none}
+.work-inscription.lower-arc .arc-down{display:block}
+.work-inscription.is-current,.work-inscription:hover,.work-inscription:focus-visible{color:#392f24}
+.work-inscription.is-current text,.work-inscription:hover text{font-weight:650}
+.work-inscription:focus-visible{outline-offset:-4px}
+.home-earth figcaption.work-caption{display:flex;align-items:center;justify-content:space-between;gap:14px;width:100%;border:0;border-top:1px solid #d6cebf;padding:12px 0 0;margin:9px auto 0}
+.work-dial,.orbit-controls,.art-name,.home-atlas{display:flex;align-items:center}
+.work-dial{gap:10px;min-width:0}
+.art-peek{width:42px;height:36px;flex:none;overflow:hidden;background:#e9e5db;cursor:zoom-in}
+.art-peek img{width:100%;height:100%;object-fit:contain}
+.art-name,.home-atlas{flex-direction:column;align-items:flex-start;gap:3px;line-height:1.22}
+.art-name{min-width:120px}
+.art-name small,.home-atlas small{color:#716c61;font-size:10px;letter-spacing:.035em;font-variant-numeric:tabular-nums}
+.art-name a,.home-atlas .atlas-link-title{font-size:13px;font-weight:500;color:#38362e}
+.art-name a{font-size:15px}
+.art-name a:hover,.home-atlas:hover .atlas-link-title{text-decoration:underline;text-underline-offset:3px}
+.home-atlas{align-items:flex-end;text-align:right;flex:none}
+.orbit-controls{gap:0}
+.orbit-controls button{display:grid;place-items:center;width:28px;height:32px;line-height:1;font-family:var(--sans);font-size:20px;color:#686256}
+.orbit-controls button:hover{color:#302c22;background:#efebe1}
+@media(max-width:970px){
+ .art-name{min-width:85px}.work-dial{gap:6px}.art-peek{width:32px;height:31px}
+ .orbit-controls button{width:24px}.home-earth figcaption.work-caption{gap:6px}.art-name a{font-size:14px}.home-atlas .atlas-link-title{font-size:12px}
+}
+@media(max-width:680px){
+ body:has(.home-earth) .intro{display:flex;flex-direction:column;align-items:stretch;gap:12px;padding:16px 0 26px}
+ body:has(.home-earth) .intro-links{margin-top:12px}
+ .home-earth{width:min(100%,410px);margin:0 auto}
+ .home-earth-stage{width:min(100%,351px)}
+ .home-earth figcaption.work-caption{padding-top:10px;margin-top:6px}
+ .art-name{min-width:0}.art-name a{max-width:110px}.orbit-controls button{width:25px;height:34px}
+}
+@media(max-width:370px){.art-peek{width:25px;height:27px}.orbit-controls button{width:20px}.work-dial{gap:4px}.home-atlas small{font-size:9px}}
+
+@media(max-width:650px){.land-map-panel{gap:16px;padding:12px 14px 17px}.atlas-globe{height:clamp(200px,53vw,300px)}.map-controls{gap:8px}.tour-country,.map-album{max-width:none;width:100%}.map-photo{aspect-ratio:1.85}.globe-hint{font-size:10px}.tour-country select{font-size:23px}.land-index-head{border-top:0}.mode-switch button{min-height:25px}}

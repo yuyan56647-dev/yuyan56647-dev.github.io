@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 210">
+  <defs>
+    <pattern id="net" width="7" height="7" patternUnits="userSpaceOnUse"><path d="M0 0L7 7M7 0L0 7" fill="none" stroke="#dedac7" stroke-width=".6"/></pattern>
+  </defs>
+  <style>
+    .kick{transform-origin:143px 130px;animation:kick 3.8s ease-in-out infinite}
+    .ball{animation:pass 3.8s ease-out infinite}
+    @keyframes kick{0%,16%,70%,100%{transform:rotate(0)}26%{transform:rotate(30deg)}40%{transform:rotate(-54deg)}}
+    @keyframes pass{0%,32%{transform:translate(0,0);opacity:1}60%{transform:translate(57px,-20px)}82%{transform:translate(122px,-3px);opacity:1}88%{transform:translate(128px,1px);opacity:0}89%,98%{transform:translate(0,0);opacity:0}}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+  </style>
+  <rect width="360" height="210" fill="#f4efe3"/><circle cx="258" cy="48" r="14" fill="#e6cea2"/>
+  <path d="M0 111q45-26 84-14t77-7q31-13 69-1t72-8q36-9 58-1v66H0" fill="#c6c9b3"/>
+  <path d="M0 119q91-10 146-5t214-6v102H0" fill="#a5ad90"/>
+  <g fill="none" stroke="#e7e5d1" stroke-width="1.5"><path d="M0 185l360-44M256 129l-41 19 42 19M275 146V99l45-5v47"/><path d="m320 94 15 7v37l-15 3z" fill="url(#net)"/><path d="m275 99 45-5v47l-45 5z" fill="url(#net)"/></g>
+  <ellipse cx="144" cy="162" rx="36" ry="3" fill="#7a846e" opacity=".5"/>
+  <g stroke-linecap="round" stroke-linejoin="round">
+    <path d="m140 129-7 13-13 13" stroke="#36413d" stroke-width="8" fill="none"/><path d="m120 155-5 4 9-1" stroke="#373c36" stroke-width="5" fill="none"/>
+    <g class="kick"><path d="m144 129 7 12-4 15" stroke="#bd9472" stroke-width="7.5" fill="none"/><path d="m147 151-1 7 8 1" stroke="#394540" stroke-width="5.5" fill="none"/></g>
+    <path d="m139 115 14 4-6 15-12-1-5-4z" fill="#424c44"/>
+    <path d="m145 88 9 3-2 13-2 17-16-2 3-17z" fill="#ae684d"/>
+    <path d="m146 94-8 7-12 1m27-7 5 9 12-1" fill="none" stroke="#c39b79" stroke-width="4.8"/>
+    <path d="m147 77-6 5-11 4q7 4 13-1l5-2" fill="#403d35"/>
+    <path d="M144 79q0-8 8-7 8 1 7 9l2 3-4 1-2 5-7-2z" fill="#c69d78"/>
+    <path d="M142 81q-2-11 9-12 9 0 9 8-7-3-13 3l-3 5z" fill="#494437"/>
+    <path d="m144 100 5 1-4 7" fill="none" stroke="#eee4d3" stroke-width="1.5"/>
+  </g>
+  <g class="ball"><circle cx="157" cy="156" r="6" fill="#eee9d8" stroke="#657463"/><path d="m156 153 3 1 1 2-3 2-2-2z" fill="#566352"/></g>
+</svg>
