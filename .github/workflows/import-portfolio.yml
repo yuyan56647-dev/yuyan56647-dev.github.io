@@ -1,0 +1,50 @@
+name: Import portfolio
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  import:
+    if: github.event_name == 'workflow_dispatch' || github.event.release.tag_name == 'portfolio-v1'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Download and verify the portfolio archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p "$RUNNER_TEMP/portfolio-upload"
+          gh release download portfolio-v1 --repo "$GITHUB_REPOSITORY" --pattern '*.zip' --dir "$RUNNER_TEMP/portfolio-upload"
+          python3 - <<'PY'
+          import hashlib
+          import os
+          from pathlib import Path
+          from zipfile import ZipFile
+
+          folder = Path(os.environ["RUNNER_TEMP"]) / "portfolio-upload"
+          archive, = folder.glob("*.zip")
+          expected = "1ea9740045c91e47e87f07702bcdd5462f343994d8ff261e45d95e74f5b57c3a"
+          if hashlib.sha256(archive.read_bytes()).hexdigest() != expected:
+              raise SystemExit("The uploaded ZIP does not match the verified portfolio export.")
+          with ZipFile(archive) as package:
+              package.extractall(".")
+          PY
+      - name: Publish the verified files to main
+        run: |
+          git add --all
+          if ! git diff --cached --quiet; then
+            git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Publish Yu Yan's portfolio"
+            git push origin HEAD:main
+          fi
+      - name: Request a GitHub Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
