@@ -17,7 +17,7 @@ import { createWoodSurface } from './wood-surface.js';
   };
   const limit = (v,lo,hi) => Math.max(lo,Math.min(hi,v));
   const wrap = v => ((v+180)%360+360)%360-180;
-  const passportID = id => (id === 'HKG' || id === 'MAC') ? 'CHN' : id;
+  const passportID = id => ['HKG', 'MAC', 'TWN'].includes(id) ? 'CHN' : id;
   const radiansBetween = (a,b) => geo.geoDistance(a,b);
   const maxLatitude = 89.9;
   const graticule = geo.geoGraticule().step([20,15])();
@@ -66,7 +66,7 @@ import { createWoodSurface } from './wood-surface.js';
     const nameOf=id=>countries[id]?.name || byId.get(id)?.name || id;
     const stops=(options.stops || window.travelData?.legs?.flatMap(leg=>leg.stops) || []).filter(s=>Number.isFinite(s.lng)&&Number.isFinite(s.lat));
     const route={type:'LineString',coordinates:stops.map(s=>[s.lng,s.lat])};
-    const initialCenter=options.center || [60,22],initialZoom=options.zoom||1;
+    const initialCenter=options.center || [103,30],initialZoom=options.zoom||1;
     let mode=options.mode==='route'?'route':'world',selected=options.selected || null;
     let center=initialCenter.slice(),zoom=initialZoom,frame=0,destroyed=false,width=0,height=0,radius=0,midX=0,midY=0;
     let pendingFocus=null,gesture=null,hovered=null,pointerStartedOnSphere=false;
@@ -113,6 +113,21 @@ import { createWoodSurface } from './wood-surface.js';
       ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);
       if(fill){ctx.fillStyle=fill;ctx.fill();}
       if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lineWidth;ctx.stroke();}
+    }
+    function labelTaiwan() {
+      const island=byId.get('TWN');
+      if(!island || radiansBetween(center,island.center)>1.03)return;
+      const [x,y]=projection(island.center);
+      ctx.save();
+      ctx.font='500 12px Helvetica,Arial,sans-serif';
+      const labelX=x+14,labelY=y+13;
+      if(Math.hypot(labelX+ctx.measureText('Taiwan').width-midX,labelY-midY)<radius-3){
+        ctx.beginPath();ctx.moveTo(x+2,y+2);ctx.lineTo(labelX-2,labelY-4);
+        ctx.strokeStyle='#654933';ctx.lineWidth=.9;ctx.stroke();
+        ctx.lineWidth=3;ctx.strokeStyle='#f3e2c8';ctx.strokeText('Taiwan',labelX,labelY);
+        ctx.fillStyle='#483529';ctx.fillText('Taiwan',labelX,labelY);
+      }
+      ctx.restore();
     }
     function mark(id,location,{kind,active=false}) {
       if(!pointVisible(location))return;
@@ -180,6 +195,7 @@ import { createWoodSurface } from './wood-surface.js';
           mark(id,r.center,{kind:'locator',active:id===selected});
         }
       }
+      if(selected==='CHN' || (!selected && options.compact))labelTaiwan();
       ctx.restore();
       traceDisk();ctx.lineWidth=.78;ctx.strokeStyle='rgba(89,65,44,.50)';ctx.stroke();
       if(pendingFocus)schedule();
