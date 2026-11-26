@@ -12,7 +12,7 @@ import { createWoodSurface } from './wood-surface.js';
   const geographyCache = new WeakMap();
   const styles = {
     oceanLight: '#f7e8d1', oceanMid: '#eddab9', oceanEdge: '#cfb78f',
-    land: '#ddc19a', visited: '#866345', origin: '#a66c47',
+    land: '#ddc19a', visited: '#866345',
     selected: '#804533', border: '#a38b6f', route: '#764331', dot: '#795543'
   };
   const limit = (v,lo,hi) => Math.max(lo,Math.min(hi,v));
@@ -153,7 +153,7 @@ import { createWoodSurface } from './wood-surface.js';
       }
       for(const {region,outline} of outlines){
         const recorded=visited.has(region.id),active=region.id===selected,over=region.id===hovered;
-        ctx.fillStyle=active?styles.selected:region.id==='CHN'&&recorded?styles.origin:recorded?styles.visited:styles.land;
+        ctx.fillStyle = active ? styles.selected : recorded ? styles.visited : styles.land;
         ctx.fill(outline,'evenodd');
         ctx.strokeStyle=active?'#5c392b':recorded?'#cbb69a':styles.border;
         ctx.lineWidth=active?.84:recorded?.55:.42;ctx.stroke(outline);
