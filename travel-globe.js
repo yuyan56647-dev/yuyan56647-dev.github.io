@@ -114,21 +114,6 @@ import { createWoodSurface } from './wood-surface.js';
       if(fill){ctx.fillStyle=fill;ctx.fill();}
       if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lineWidth;ctx.stroke();}
     }
-    function labelTaiwan() {
-      const island=byId.get('TWN');
-      if(!island || radiansBetween(center,island.center)>1.03)return;
-      const [x,y]=projection(island.center);
-      ctx.save();
-      ctx.font='500 12px Helvetica,Arial,sans-serif';
-      const labelX=x+14,labelY=y+13;
-      if(Math.hypot(labelX+ctx.measureText('Taiwan').width-midX,labelY-midY)<radius-3){
-        ctx.beginPath();ctx.moveTo(x+2,y+2);ctx.lineTo(labelX-2,labelY-4);
-        ctx.strokeStyle='#654933';ctx.lineWidth=.9;ctx.stroke();
-        ctx.lineWidth=3;ctx.strokeStyle='#f3e2c8';ctx.strokeText('Taiwan',labelX,labelY);
-        ctx.fillStyle='#483529';ctx.fillText('Taiwan',labelX,labelY);
-      }
-      ctx.restore();
-    }
     function mark(id,location,{kind,active=false}) {
       if(!pointVisible(location))return;
       const [x,y]=projection(location),small=width<430;
@@ -195,7 +180,6 @@ import { createWoodSurface } from './wood-surface.js';
           mark(id,r.center,{kind:'locator',active:id===selected});
         }
       }
-      if(selected==='CHN' || (!selected && options.compact))labelTaiwan();
       ctx.restore();
       traceDisk();ctx.lineWidth=.78;ctx.strokeStyle='rgba(89,65,44,.50)';ctx.stroke();
       if(pendingFocus)schedule();
